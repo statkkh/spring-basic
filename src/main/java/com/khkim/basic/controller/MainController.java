@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 // description: Response Body의 타입이 JSON 형태의 데이터를 반환
 @RestController  
 // description: @RequestMapping - Request  의  URL의 패턴에 따라 클래스 및 메서드
-@RequestMapping("/") // "http://localhost:4000/**    **뒤에 여러개 가능 "
+@RequestMapping("/api/v1/module1") // "http://localhost:4000/**    **뒤에 여러개 가능 "
 // @RequestMapping("/main") // "http://localhost:4000/main/**
 public class MainController {
     //http://localhost:4000/hello GET 
