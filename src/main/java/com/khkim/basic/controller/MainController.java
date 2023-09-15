@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
 import com.khkim.basic.dto.response.TmpReponseDTO;
+import com.khkim.basic.service.MainService;
+import com.khkim.basic.service.implement.MainServiceImplement;
+
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.validation.Valid;
 
@@ -31,7 +36,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 // description: @RequestMapping - Request  의  URL의 패턴에 따라 클래스 및 메서드
 @RequestMapping("/api/v1/module1") // "http://localhost:4000/**    **뒤에 여러개 가능 "
 // @RequestMapping("/main") // "http://localhost:4000/main/**
+@RequiredArgsConstructor
 public class MainController {
+
+    private final MainService mainService;
+
+    
+
     //http://localhost:4000/hello GET 
     @RequestMapping(value = "hello", method = {RequestMethod.POST})
     public String hello(){
@@ -43,7 +54,7 @@ public class MainController {
     // description : 
     @GetMapping("")
     public String getMethod() {
-        return "This is Get Method";
+        return mainService.getMethod();
     }
     
     // description :  @RequestMapping 중 POST METHOD 에  한정하여 인식
@@ -119,12 +130,10 @@ public class MainController {
     ){
         return requestBody.getArg1() ;
     }
-
+ 
     // @GetMapping("response-entity")
-    // public ResponseEntity<TmpReponseDTO> getResponseEntity(){
-    //     // TmpReponseDTO reponseBody = new TmpReponseDTO(arg1 , arg2);
-    //     TmpReponseDTO responseBody = new TmpReponseDTO(getMethod() , null);
-    //     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    // public ResponseEntity<TmpReponseDTO> gResponseEntity(){
+    //     TmpReponseDTO responseBody = new TmpReponseDTO(getMethod(), null);
     // }
  
     // @GetMapping("/api/v1/module1/{taskNumber}")    

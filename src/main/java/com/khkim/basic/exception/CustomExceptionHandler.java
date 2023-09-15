@@ -1,4 +1,4 @@
-package com.khkim.basic.dto.exception;
+package com.khkim.basic.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,8 @@ public class CustomExceptionHandler {
     }
 
     // @ExceptionHandler(HttpMessageNotValidException.class)
-    // public ResponseEntity<String> HTTPMessageNotValidExceptionHandler(Exception exception){
-    //     exception.printStackTrace();
-    //     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("미 입력");
-    // }
-    
+     public ResponseEntity<String> HTTPMessageNotValidExceptionHandler(Exception exception){
+         exception.printStackTrace();
+         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("미 입력");
+     }
 }
