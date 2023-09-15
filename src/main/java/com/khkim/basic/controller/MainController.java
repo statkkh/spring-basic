@@ -123,6 +123,14 @@ public class MainController {
         return "name: " + name + ", age : " + age;   
 
     }   
+    // @PatchMapping("parameter")
+    // public String getParameter(
+    //     @RequestParam("name") String name,
+    //     @RequestParam("age") Integer age
+    // ){
+    //     return "name: " + name + ", age : " + age;   
+
+    // }       
     // description : @RequestBody - Request  Body에 포함된  데이터를 받아옴
     //  description : 문자열혹은 객체로 받을 수 있음 
     
