@@ -5,7 +5,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
+
+import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -106,36 +109,42 @@ public class MainController {
         return "Request 의 Body는 " + requestBody.getName() + " " + requestBody.getAge() + " 입니다" ;
     }
 
-
+    @PatchMapping("validation")
+    public String validation(
+        @RequestBody @Valid PatchValidationDto requestBody
+    ){
+        return requestBody.getArg1() + "add";
+    }
  
-    @GetMapping("/api/v1/module1/{taskNumber}")    
-    public Integer getMethod(@RequestParam Integer taskNumber) {
+    // @GetMapping("/api/v1/module1/{taskNumber}")    
+    // public Integer getMethod(@RequestParam Integer taskNumber) {
         
-        System.out.println("taskNumber: " + taskNumber);
+    //     System.out.println("taskNumber: " + taskNumber);
 
-        return taskNumber ;
-    }
+    //     return taskNumber ;
+    // }
     
-    @PostMapping("/api/v1/module1")    
-    public Integer postMethod(@RequestParam Integer taskNumber) {
+    // @PostMapping("/api/v1/module1")    
+    // public Integer postMethod(@RequestParam Integer taskNumber) {
         
-        System.out.println("taskNumber: " + taskNumber);
+    //     System.out.println("taskNumber: " + taskNumber);
 
-        return taskNumber ;
-    }
+    //     return taskNumber ;
+    // }
 
-    @PatchMapping("/api/v1/module1/{taskNumber}")    
-    public Integer PatchMethod(@RequestParam Integer taskNumber) {
+    // @PatchMapping("/api/v1/module1/{taskNumber}")    
+    // public Integer PatchMethod(@RequestParam Integer taskNumber) {
         
-        System.out.println("taskNumber: " + taskNumber);
+    //     System.out.println("taskNumber: " + taskNumber);
 
-        return taskNumber ;
-    }    
-    @DeleteMapping("/api/v1/module1/{taskNumber}")    
-    public Integer DeleteMethod(@RequestParam Integer taskNumber) {
+    //     return taskNumber ;
+    // }    
+    // @DeleteMapping("/api/v1/module1/{taskNumber}")    
+    // public Integer DeleteMethod(@RequestParam Integer taskNumber) {
         
-        System.out.println("taskNumber: " + taskNumber);
+    //     System.out.println("taskNumber: " + taskNumber);
 
-        return taskNumber ;
-    }       
+    //     return taskNumber ;
+    // } 
+          
 }
