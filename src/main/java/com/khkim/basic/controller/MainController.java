@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.khkim.basic.dto.request.PostRequetsBodyDto;
+import com.khkim.basic.dto.request.PostRequestBodyDto;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +42,7 @@ public class MainController {
     
     // description :  @RequestMapping 중 POST METHOD 에  한정하여 인식
     // description : 데이터를 생성하기 위한 요청
-    // description : 데이터 입력시  Body로 입력
+    // description : 데이터 입력시  Body로 입력(get, delete)
     @PostMapping("")
     public String postMethod(){
         return "This is Post Method";
@@ -50,7 +50,7 @@ public class MainController {
 
     // description :  @RequestMapping  중  PUT Method 에 한정하여 인식//
     // description :  데이터를 수정하기 위하여 요청(전체 수정)    
-    // description : 데이터 입력시  Body로 입력
+    // description : 데이터 입력시  Body로 입력(post,patch, put ) requestbody에  데이터 포함//
     @PutMapping("")
     public String putMethod(){
         return "This is Put Method";
@@ -82,9 +82,10 @@ public class MainController {
         
     }
 
-    //   : @RequestParam - Query Parameter로 key 와  value 를 받아옴    //
+    // description  : @RequestParam - Query Parameter로 key 와  value 를 받아옴    //
     // description : Query Parameter - ?name1 = value&name2=value...    //  
     // description : @RequestParam("name1") -> name1 에대한  value1 를 받음     //
+    // description 데이터 받기 //
     @GetMapping("parameter")
     public String getParameter(
         @RequestParam("name") String name,
@@ -98,9 +99,43 @@ public class MainController {
     
     @PostMapping("request-body")
     public String postRequestBody(
-        @RequestBody PostRequetsBodyDto requestBody
+        // @RequestBody String requestBody text 형태
+        // 객체로 입력 받아서  작업
+        @RequestBody PostRequestBodyDto requestBody
     ){
         return "Request 의 Body는 " + requestBody.getName() + " " + requestBody.getAge() + " 입니다" ;
     }
 
+
+ 
+    @GetMapping("/api/v1/module1/{taskNumber}")    
+    public Integer getMethod(@RequestParam Integer taskNumber) {
+        
+        System.out.println("taskNumber: " + taskNumber);
+
+        return taskNumber ;
+    }
+    
+    @PostMapping("/api/v1/module1")    
+    public Integer postMethod(@RequestParam Integer taskNumber) {
+        
+        System.out.println("taskNumber: " + taskNumber);
+
+        return taskNumber ;
+    }
+
+    @PatchMapping("/api/v1/module1/{taskNumber}")    
+    public Integer PatchMethod(@RequestParam Integer taskNumber) {
+        
+        System.out.println("taskNumber: " + taskNumber);
+
+        return taskNumber ;
+    }    
+    @DeleteMapping("/api/v1/module1/{taskNumber}")    
+    public Integer DeleteMethod(@RequestParam Integer taskNumber) {
+        
+        System.out.println("taskNumber: " + taskNumber);
+
+        return taskNumber ;
+    }       
 }
