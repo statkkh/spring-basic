@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,10 +39,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 // @RequestMapping("/main") // "http://localhost:4000/main/**
 @RequiredArgsConstructor
 public class MainController {
+    // description : @AutoWired -  Java Bean 으로 등록되어 있는 클래스에 대해서 제어의 역전을 통해 의존성을 주입하는 어노테이션 //
+    // @Autowired
+    // private  MainService mainService;
+    // description : IOC를 통해서 DI 하는 방법  //
+    // description 1. 멤버변수를 사용한 DI //
+    // description 2. setter 메서드를 사용한 DI //
+    // description 3.  생성자를 사용한 DI //
 
+    // description : 공식문서상에서는 생성자를 사용한 DI를 권장 //
+    // description : 생성자를 사용한 DI에서는 @Autowired 를 사용하지 않아도됨  //
+
+    // description : 아래 방법은 생성자를 사용한 IOC를 통한 DI 이며  final로 지정하여 필수 멤버변수로 지정함  //
+    // description : lombok 라이브러리를 사용한 @RequiredArgsConstructor 를 사용하여  필수 멤버변수의 생성자를 만듬 //
     private final MainService mainService;
 
-    
 
     //http://localhost:4000/hello GET 
     @RequestMapping(value = "hello", method = {RequestMethod.POST})
@@ -51,7 +63,7 @@ public class MainController {
     // description :  @RequestMapping 중 GET METHOD 에  한정하여 인식
     // description : 데이터를 얻기 위한 요청
     // description : 데이터 입력시 URL로 입력
-    // description : 
+    
     @GetMapping("")
     public String getMethod() {
         return mainService.getMethod();
