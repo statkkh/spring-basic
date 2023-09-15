@@ -1,11 +1,14 @@
 package com.khkim.basic.dto.request;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.URL;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,11 +31,25 @@ public class PatchValidationDto {
     @NotBlank
     // description : @Size -문자열과 컬렉션타입(리스트, 세트 등)의 길이 제한을 줄 수 있도록 함
     @Size(min =1, max=5)
+    // description : @length 문자열 의 길이 를  제한할 수  있도록 함 ///    
+    @Length(min =1 , max = 5)
+    private Integer arg2;
     private String  arg1;
     @NotNull 
     // description : @Range 숫자의 범위를 지정할 수  있도록 함 ///
+    
     @Range(min =1, max=5)
-    private Integer arg2;
+    // private Integer arg2;
+    // description : @Email 문자열 에 이메일 형식만   지정할 수  있도록 함 //
+    @Email
     private String arg3;
+    // description : @URL 문자열의 URL 형식만  올 수  있도록 함 ///
+    @URL
     private String arg4;
+    
+
+
+    
+
+
 }

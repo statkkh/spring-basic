@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
+import com.khkim.basic.dto.response.TmpReponseDTO;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -111,10 +114,18 @@ public class MainController {
 
     @PatchMapping("validation")
     public String validation(
+        // description : DTO 에 작성된 유효성 검사를 적용하려 한다면 @Valud 를 매개변수 자리에 추가해야 함//
         @RequestBody @Valid PatchValidationDto requestBody
     ){
-        return requestBody.getArg1() + "add";
+        return requestBody.getArg1() ;
     }
+
+    // @GetMapping("response-entity")
+    // public ResponseEntity<TmpReponseDTO> getResponseEntity(){
+    //     // TmpReponseDTO reponseBody = new TmpReponseDTO(arg1 , arg2);
+    //     TmpReponseDTO responseBody = new TmpReponseDTO(getMethod() , null);
+    //     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    // }
  
     // @GetMapping("/api/v1/module1/{taskNumber}")    
     // public Integer getMethod(@RequestParam Integer taskNumber) {
@@ -146,5 +157,5 @@ public class MainController {
 
     //     return taskNumber ;
     // } 
-          
+
 }
