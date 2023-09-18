@@ -9,14 +9,14 @@ import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
 import com.khkim.basic.dto.response.TmpReponseDTO;
 import com.khkim.basic.service.MainService;
-import com.khkim.basic.service.implement.MainServiceImplement;
+// import com.khkim.basic.service.implement.MainServiceImplement;
 
-import lombok.AllArgsConstructor;
+// import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

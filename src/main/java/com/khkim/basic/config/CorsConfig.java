@@ -1,7 +1,7 @@
 package com.khkim.basic.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistration;
+// import org.springframework.web.servlet.config.annotation.CorsRegistration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 // description 브라우저에서 실행되는 스크립트가 다른 출처의 리소스에 접근하는 것을 제어하는 보안 정책 //
@@ -28,11 +28,11 @@ public class CorsConfig  implements WebMvcConfigurer{
 
     }
 
-    private void allowedMethods(String string) {
-    }
+    // private void allowedMethods(String string) {
+    // }
 
-    private CorsRegistration addMapping() {
-        return null;
-    }
+    // private CorsRegistration addMapping() {
+    //     return null;
+    // }
     
 }
