@@ -3,7 +3,7 @@ package com.khkim.basic.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-// @Getter
+@Getter
 @AllArgsConstructor
 public class TmpReponseDTO {
     private String arg1;

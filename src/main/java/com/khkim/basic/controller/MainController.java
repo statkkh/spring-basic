@@ -52,7 +52,7 @@ public class MainController {
 
     // description : 아래 방법은 생성자를 사용한 IOC를 통한 DI 이며  final로 지정하여 필수 멤버변수로 지정함  //
     // description : lombok 라이브러리를 사용한 @RequiredArgsConstructor 를 사용하여  필수 멤버변수의 생성자를 만듬 //
-    private final MainService mainService;
+    private final MainService mainService;// 생성자를 사용한 IOC
 
 
     //http://localhost:4000/hello GET 
@@ -65,7 +65,7 @@ public class MainController {
     // description : 데이터 입력시 URL로 입력
     
     @GetMapping("")
-    public String getMethod() {
+    public String getMethod(String string) {
         return mainService.getMethod();
     }
     
@@ -150,11 +150,12 @@ public class MainController {
     ){
         return requestBody.getArg1() ;
     }
- 
-    // @GetMapping("response-entity")
-    // public ResponseEntity<TmpReponseDTO> gResponseEntity(){
-    //     TmpReponseDTO responseBody = new TmpReponseDTO(getMethod(), null);
-    // }
+    @GetMapping("response-entity")
+    public ResponseEntity<TmpReponseDTO> getResponseEntity(){
+        TmpReponseDTO responseBody = new TmpReponseDTO(getMethod("안ㅇㄴㅁsd"), 10);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }    
+
  
     // @GetMapping("/api/v1/module1/{taskNumber}")    
     // public Integer getMethod(@RequestParam Integer taskNumber) {
