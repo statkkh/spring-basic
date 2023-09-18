@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.khkim.basic.dto.request.PostUserRequestDto;
-import com.khkim.basic.dto.response.PostUserResonseDto;
+import com.khkim.basic.dto.response.PostUserResponseDto;
 import com.khkim.basic.entity.UserEntity;
 import com.khkim.basic.repository.UserRepository;
 import com.khkim.basic.service.MainService;
@@ -27,7 +27,7 @@ public class MainServiceImplement implements MainService {
     }
 
     @Override
-    public ResponseEntity<? super PostUserResonseDto> postUser(PostUserRequestDto dto) {
+    public ResponseEntity<? super PostUserResponseDto> postUser(PostUserRequestDto dto) {
 
         // INSERT INTO user(email, password, nickname,telNumber address , addressDetail);
         // VALUES(dto.getEmail() , dto.getPassword()...)
@@ -38,7 +38,7 @@ public class MainServiceImplement implements MainService {
         //  description :2 .repository 의 save 메서드 사용//
         userRepository.save(userEntity); 
 
-        return ResponseEntity.status(HttpStatus.OK).body(new PostUserResonseDto("SU","Success"));
+        return ResponseEntity.status(HttpStatus.OK).body(new PostUserResponseDto("SU","Success"));
     }
     
 }

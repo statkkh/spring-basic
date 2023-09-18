@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
 import com.khkim.basic.dto.request.PostUserRequestDto;
-import com.khkim.basic.dto.response.PostUserResonseDto;
+import com.khkim.basic.dto.response.PostUserResponseDto;
 import com.khkim.basic.dto.response.TmpReponseDTO;
 import com.khkim.basic.service.MainService;
 // import com.khkim.basic.service.implement.MainServiceImplement;
@@ -159,10 +159,10 @@ public class MainController {
     }    
 
     @PostMapping(value="user")
-    public ResponseEntity<? super PostUserResonseDto> postUser(
+    public ResponseEntity<? super PostUserResponseDto> postUser(
         @RequestBody @Valid PostUserRequestDto reqestBody
     ) {
-        ResponseEntity<? super PostUserResonseDto> response = mainService.postUser(reqestBody);
+        ResponseEntity<? super PostUserResponseDto> response = mainService.postUser(reqestBody);
         return response;
     }
 
