@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
+import com.khkim.basic.dto.request.PostUserRequestDto;
+import com.khkim.basic.dto.response.PostUserResonseDto;
 import com.khkim.basic.dto.response.TmpReponseDTO;
 import com.khkim.basic.service.MainService;
 // import com.khkim.basic.service.implement.MainServiceImplement;
@@ -156,7 +158,15 @@ public class MainController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }    
 
- 
+    @PostMapping(value="user")
+    public ResponseEntity<? super PostUserResonseDto> postUser(
+        @RequestBody @Valid PostUserRequestDto reqestBody
+    ) {
+        ResponseEntity<? super PostUserResonseDto> response = mainService.postUser(reqestBody);
+        return response;
+    }
+
+    
     // @GetMapping("/api/v1/module1/{taskNumber}")    
     // public Integer getMethod(@RequestParam Integer taskNumber) {
         
