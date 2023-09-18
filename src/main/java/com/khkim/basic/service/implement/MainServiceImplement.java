@@ -35,7 +35,7 @@ public class MainServiceImplement implements MainService {
         // description : Create 작업 순서(INSERT) 
         // description : 1. Entity 인스턴스 생성 //
         UserEntity userEntity = new UserEntity(dto);
-        //  description :2 .repository 의 save 메서드 사용//
+        //  description :2 .repository 의 save 메서드 사용 동일한 id가 있으면 존재하는 데이터에 수정, 없으면 생성//
         userRepository.save(userEntity); 
 
         return ResponseEntity.status(HttpStatus.OK).body(new PostUserResponseDto("SU","Success"));
