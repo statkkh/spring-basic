@@ -9,6 +9,8 @@ import com.khkim.basic.dto.request.PatchNicknameRequestDto;
 import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
 import com.khkim.basic.dto.request.PostUserRequestDto;
+import com.khkim.basic.dto.response.DeleteUserResponseDto;
+import com.khkim.basic.dto.response.PatchNicknameResponseDto;
 import com.khkim.basic.dto.response.PostUserResponseDto;
 import com.khkim.basic.dto.response.TmpReponseDTO;
 import com.khkim.basic.service.MainService;
@@ -169,26 +171,20 @@ public class MainController {
 
     @PatchMapping("nickname")
     public ResponseEntity<? super PatchNicknameResponseDto> patchNickname(
-        @RequestBody PatchNicknameRequestDto requestBody
+        @RequestBody @Valid  PatchNicknameRequestDto requestBody
     ){
-
+        ResponseEntity<? super PatchNicknameResponseDto> response = mainService.patchNickname(requestBody);
+        return response;
     }
-    
-    // @PatchMapping("nickname")
-    // public ResponseEntity<? super PatchNicknameResponseDto> patchNickname(
-    //     @RequestBody @Valid  PatchNicknameRequestDto requestBody
-    // ){
-    //     ResponseEntity<? super PatchNicknameResponseDto> response = mainService.patchNickname(requestBody);
-    //     return response;
-    // }    
-
-    // @DeleteMapping("user/{email}") 
-    // public ResponseEntity <? super DeleteUserResponseDto> deleteUser(
-    //     @PathVariable("email") String email
-    // ){
-    //     ResponseEntity<? super DeleteUserResponseDto> response = mainService.deleteUser(email);
-    //     return response;
-    // }
+     
+//
+    @DeleteMapping("user/{email}") 
+    public ResponseEntity <? super DeleteUserResponseDto> deleteUser(
+        @PathVariable("email") String email
+    ){
+        ResponseEntity<? super DeleteUserResponseDto> response = mainService.deleteUser(email);
+        return response;
+    }
 
 
 }

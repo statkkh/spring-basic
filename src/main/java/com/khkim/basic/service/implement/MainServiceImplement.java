@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.khkim.basic.dto.request.PatchNicknameRequestDto;
 import com.khkim.basic.dto.request.PostUserRequestDto;
+import com.khkim.basic.dto.response.DeleteUserResponseDto;
+import com.khkim.basic.dto.response.PatchNicknameResponseDto;
 import com.khkim.basic.dto.response.PostUserResponseDto;
 import com.khkim.basic.dto.response.ResponseDto;
 import com.khkim.basic.entity.UserEntity;
@@ -72,7 +74,7 @@ public class MainServiceImplement implements MainService {
         }
 
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new PatchNicknameRequestDto("", ""));
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new PatchNicknameResponseDto("DBE", "DATABASE ERROR"));
     }
 
  
