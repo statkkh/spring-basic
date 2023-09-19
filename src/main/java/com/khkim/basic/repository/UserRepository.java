@@ -12,7 +12,7 @@ import com.khkim.basic.entity.UserEntity;
 
 //  description : @Repository  - @Component 의 역할을 하며, Repository 임을 명시하기 위해 이름만 @Repository 임 
 @Repository
-//  description : JpaRepository  인터페이스 - Jpa 기반의  Repository 인터페이스를 구현하는 데 사용함
+//  description : JpaRepository  인터페이스 - Jpa 기반의  Repository 인터페이스를 구현하는 데 사용함 //
 //  description : JpaRepository < T,  K> - T 해당 레포지토리에서 사용될 엔터티클래스, ID:해당 클래스에  지정한 기본키 필드의 타입//
 public interface UserRepository extends JpaRepository<UserEntity, String>{
 
@@ -20,12 +20,12 @@ public interface UserRepository extends JpaRepository<UserEntity, String>{
     UserEntity findByEmail(String email);
     // select * from user where email ="??" and nickname ="";
     UserEntity findByEmailAndNickname(String email, String nickname);
-    // SELECT * FROM user where address_detail = "" order by address desc;0~n
-    List<UserEntity>findByAddresDetailOrderbyAddressDesc(String addressDetail);
+    // SELECT * FROM user where address_detail = "??" order by address desc ;0~n
+    List<UserEntity>findByAddressDetailOrderByAddressDesc(String addressDetail);
 
     boolean existsByEmail(String email);
     // select * from user where email = '?' or nickname = '?' or tel_number = '?'; - 레코드 존재여부
-    boolean existsByEmailOrNickNameOrTelNumber(String email,String nickname, String telNumber );
+    boolean existsByEmailOrNicknameOrTelNumber(String email,String nickname, String telNumber );
    
     long countByAddress(String address);
 
@@ -57,7 +57,5 @@ public interface UserRepository extends JpaRepository<UserEntity, String>{
         ")"    
     , nativeQuery=true)
     List<UserEntity> getBoardWriterUserList();
-
-
 
 }

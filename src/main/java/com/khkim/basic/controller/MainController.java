@@ -29,23 +29,19 @@ import com.khkim.basic.service.MainService;
 // import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import javax.validation.Valid;
-
 // import org.springframework.beans.factory.annotation.Autowired;
-
-
 // description: Controller    레이어드 아키텍처 상의 프레젠테이션 영역   //
 // description: 클라이언트로부터 요청(입력)을 받고 서비스 결과를 응답(출력) 하는 영역//
 // description:  @RestController : REST API 형식 Controller 를 만드고자 할 때 사용하는 어노테이션
 // description: Response Body의 타입이 JSON 형태의 데이터를 반환
 @RestController  
 // description: @RequestMapping - Request  의  URL의 패턴에 따라 클래스 및 메서드
-@RequestMapping("/main") // "http://localhost:4000/**    **뒤에 여러개 가능 "
+@RequestMapping("/") // "http://localhost:4000/**    **뒤에 여러개 가능 "
 // @RequestMapping("/main") // "http://localhost:4000/main/**
 @RequiredArgsConstructor
 public class MainController {
     // description : @AutoWired -  Java Bean 으로 등록되어 있는 클래스에 대해서 제어의 역전을 통해 의존성을 주입하는 어노테이션 //
     // @Autowired
-    // private  MainService mainService;
     // description : IOC를 통해서 DI 하는 방법  //
     // description 1. 멤버변수를 사용한 DI //
     // description 2. setter 메서드를 사용한 DI //
@@ -68,7 +64,7 @@ public class MainController {
     // description : 데이터 입력시 URL로 입력
     
     @GetMapping("")
-    public String getMethod(String string) {
+    public String getMethod() {
         return mainService.getMethod();
     }
     
@@ -156,15 +152,15 @@ public class MainController {
     }
     @GetMapping("response-entity")
     public ResponseEntity<TmpResponseDTO> getResponseEntity(){
-        TmpResponseDTO responseBody = new TmpResponseDTO(getMethod("hello"), 10);
+        TmpResponseDTO responseBody = new TmpResponseDTO("hye", 10);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }    
 
     @PostMapping("user")
     public ResponseEntity<? super PostUserResponseDto> postUser(
-        @RequestBody @Valid PostUserRequestDto requsetBody
+        @RequestBody @Valid PostUserRequestDto requestBody
     ) {
-        ResponseEntity<? super PostUserResponseDto> response = mainService.postUser(requsetBody);
+        ResponseEntity<? super PostUserResponseDto> response = mainService.postUser(requestBody);
         return response;
     }
 
