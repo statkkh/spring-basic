@@ -37,13 +37,17 @@ public class UserEntity {
     // private String profile;
 
     public UserEntity(PostUserRequestDto dto){
-            this.email = dto.getEmail();
-            this.password = dto.getPassword();
-            this.nickname = dto.getNickname() ;
-            this.telNumber = dto.getTelNumber();
-            this.address = dto.getAddress();
-            this.addressDetail = dto.getAddressDetail();
-            this.agreedPersonal = true;
+        this.email = dto.getEmail();
+        this.password = dto.getPassword();
+        this.nickname = dto.getNickname() ;
+        this.telNumber = dto.getTelNumber();
+        this.address = dto.getAddress();
+        this.addressDetail = dto.getAddressDetail();
+        this.agreedPersonal = true;
+    }
+
+    public void updateNickname( String nickname){
+        this.nickname = nickname;
     }
 
 }

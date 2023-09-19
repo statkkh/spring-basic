@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.khkim.basic.dto.request.PatchNicknameRequestDto;
 import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
 import com.khkim.basic.dto.request.PostUserRequestDto;
@@ -166,36 +167,28 @@ public class MainController {
         return response;
     }
 
+    @PatchMapping("nickname")
+    public ResponseEntity<? super PatchNicknameResponseDto> patchNickname(
+        @RequestBody PatchNicknameRequestDto requestBody
+    ){
+
+    }
     
-    // @GetMapping("/api/v1/module1/{taskNumber}")    
-    // public Integer getMethod(@RequestParam Integer taskNumber) {
-        
-    //     System.out.println("taskNumber: " + taskNumber);
-
-    //     return taskNumber ;
-    // }
-    
-    // @PostMapping("/api/v1/module1")    
-    // public Integer postMethod(@RequestParam Integer taskNumber) {
-        
-    //     System.out.println("taskNumber: " + taskNumber);
-
-    //     return taskNumber ;
-    // }
-
-    // @PatchMapping("/api/v1/module1/{taskNumber}")    
-    // public Integer PatchMethod(@RequestParam Integer taskNumber) {
-        
-    //     System.out.println("taskNumber: " + taskNumber);
-
-    //     return taskNumber ;
+    // @PatchMapping("nickname")
+    // public ResponseEntity<? super PatchNicknameResponseDto> patchNickname(
+    //     @RequestBody @Valid  PatchNicknameRequestDto requestBody
+    // ){
+    //     ResponseEntity<? super PatchNicknameResponseDto> response = mainService.patchNickname(requestBody);
+    //     return response;
     // }    
-    // @DeleteMapping("/api/v1/module1/{taskNumber}")    
-    // public Integer DeleteMethod(@RequestParam Integer taskNumber) {
-        
-    //     System.out.println("taskNumber: " + taskNumber);
 
-    //     return taskNumber ;
-    // } 
+    // @DeleteMapping("user/{email}") 
+    // public ResponseEntity <? super DeleteUserResponseDto> deleteUser(
+    //     @PathVariable("email") String email
+    // ){
+    //     ResponseEntity<? super DeleteUserResponseDto> response = mainService.deleteUser(email);
+    //     return response;
+    // }
+
 
 }
