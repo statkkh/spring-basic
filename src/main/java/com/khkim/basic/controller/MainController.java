@@ -1,13 +1,15 @@
 package com.khkim.basic.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+// import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.khkim.basic.dto.request.PatchNicknameRequestDto;
 import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
 import com.khkim.basic.dto.request.PostUserRequestDto;
+import com.khkim.basic.dto.response.PatchNicknameResponseDto;
 import com.khkim.basic.dto.response.PostUserResponseDto;
 import com.khkim.basic.dto.response.TmpReponseDTO;
 import com.khkim.basic.service.MainService;
@@ -29,15 +31,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
 // description: Controller    레이어드 아키텍처 상의 프레젠테이션 영역   //
 // description: 클라이언트로부터 요청(입력)을 받고 서비스 결과를 응답(출력) 하는 영역//
 // description:  @RestController : REST API 형식 Controller 를 만드고자 할 때 사용하는 어노테이션
 // description: Response Body의 타입이 JSON 형태의 데이터를 반환
 @RestController  
 // description: @RequestMapping - Request  의  URL의 패턴에 따라 클래스 및 메서드
-@RequestMapping("/api/v1/module1") // "http://localhost:4000/**    **뒤에 여러개 가능 "
+@RequestMapping("/") // "http://localhost:4000/**    **뒤에 여러개 가능 "
 // @RequestMapping("/main") // "http://localhost:4000/main/**
 @RequiredArgsConstructor
 public class MainController {
@@ -56,12 +56,11 @@ public class MainController {
     // description : lombok 라이브러리를 사용한 @RequiredArgsConstructor 를 사용하여  필수 멤버변수의 생성자를 만듬 //
     private final MainService mainService;// 생성자를 사용한 IOC
 
-
     //http://localhost:4000/hello GET 
-    @RequestMapping(value = "hello", method = {RequestMethod.POST})
-    public String hello(){
-        return "Hello spring framwork";
-    }
+    // @RequestMapping(value = "hello", method = {RequestMethod.POST})
+    // public String hello(){
+    //     return "Hello spring framwork";
+    // }
     // description :  @RequestMapping 중 GET METHOD 에  한정하여 인식
     // description : 데이터를 얻기 위한 요청
     // description : 데이터 입력시 URL로 입력
@@ -107,7 +106,15 @@ public class MainController {
     // description : {변수명}로 표현 -> @PathVariable("변수명")로 받음//
     @GetMapping("path-variable/{variable}")
     public String getPathVarible(
-        @PathVariable("variable") String variable
+        @PathVariable("variable") Integer variable
+        ){
+              return "Parameter value : " + variable;  
+        
+    }
+
+    @PutMapping("path-variable/{variable}")
+    public String putPathVarible(
+        @PathVariable("variable") Integer variable
         ){
               return "Parameter value : " + variable;  
         
@@ -125,16 +132,9 @@ public class MainController {
         return "name: " + name + ", age : " + age;   
 
     }   
-    // @PatchMapping("parameter")
-    // public String getParameter(
-    //     @RequestParam("name") String name,
-    //     @RequestParam("age") Integer age
-    // ){
-    //     return "name: " + name + ", age : " + age;   
-
-    // }       
+   
     // description : @RequestBody - Request  Body에 포함된  데이터를 받아옴
-    //  description : 문자열혹은 객체로 받을 수 있음 
+    // description : 문자열혹은 객체로 받을 수 있음 
     
     @PostMapping("request-body")
     public String postRequestBody(
@@ -166,36 +166,14 @@ public class MainController {
         return response;
     }
 
+    @PatchMapping("nickname")
+    public ResponseEntity<? super PatchNicknameResponseDto> patchNickname(
+        @RequestBody @Valid PatchNicknameRequestDto requestBody
+    ) {
+        ResponseEntity<? super PatchNicknameResponseDto> response = mainService.patchNickname(requestBody);
+        return response;
+    }    
+
     
-    // @GetMapping("/api/v1/module1/{taskNumber}")    
-    // public Integer getMethod(@RequestParam Integer taskNumber) {
-        
-    //     System.out.println("taskNumber: " + taskNumber);
-
-    //     return taskNumber ;
-    // }
-    
-    // @PostMapping("/api/v1/module1")    
-    // public Integer postMethod(@RequestParam Integer taskNumber) {
-        
-    //     System.out.println("taskNumber: " + taskNumber);
-
-    //     return taskNumber ;
-    // }
-
-    // @PatchMapping("/api/v1/module1/{taskNumber}")    
-    // public Integer PatchMethod(@RequestParam Integer taskNumber) {
-        
-    //     System.out.println("taskNumber: " + taskNumber);
-
-    //     return taskNumber ;
-    // }    
-    // @DeleteMapping("/api/v1/module1/{taskNumber}")    
-    // public Integer DeleteMethod(@RequestParam Integer taskNumber) {
-        
-    //     System.out.println("taskNumber: " + taskNumber);
-
-    //     return taskNumber ;
-    // } 
 
 }

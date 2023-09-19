@@ -5,8 +5,11 @@ import org.springframework.http.ResponseEntity;
 // import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.khkim.basic.dto.request.PatchNicknameRequestDto;
 import com.khkim.basic.dto.request.PostUserRequestDto;
+import com.khkim.basic.dto.response.PatchNicknameResponseDto;
 import com.khkim.basic.dto.response.PostUserResponseDto;
+import com.khkim.basic.dto.response.ResponseDto;
 import com.khkim.basic.entity.UserEntity;
 import com.khkim.basic.repository.UserRepository;
 import com.khkim.basic.service.MainService;
@@ -14,7 +17,7 @@ import com.khkim.basic.service.MainService;
 import lombok.RequiredArgsConstructor;
 // 모든 결과물을 여기에서 
 // description : ! @Component 해당 클래스를 자바 bean에 등록하여  Spring 이 인스턴스 생성을 알아서 하도록 하는 어노테이션
-//  description : ! @Service @Component 와 동일한 작업을 수행하지만 가독성을 위해 Serivice 라는 이름을 가짐
+// description : ! @Service @Component 와 동일한 작업을 수행하지만 가독성을 위해 Serivice 라는 이름을 가짐
 @Service
 @RequiredArgsConstructor
 public class MainServiceImplement implements MainService {
@@ -39,6 +42,38 @@ public class MainServiceImplement implements MainService {
         userRepository.save(userEntity); 
 
         return ResponseEntity.status(HttpStatus.OK).body(new PostUserResponseDto("SU","Success"));
+    }
+
+    @Override
+    public ResponseEntity<? super PatchNicknameResponseDto> patchNickname(PatchNicknameRequestDto dto) {
+        
+        // UPDATE user SET nickname = dto.getNickname() WHERE email = dto.getEmail();
+
+        try {
+
+            // description: Update 작업 순서 (UPDATE) //
+            // description: 1. Entity 인스턴스 조회 //
+            // description: findById() - primary key를 사용하여 레코드를 검색하는 메서드 //
+            // SELECT * FROM user WHERE email = ??;
+            UserEntity userEntity = userRepository.findById(dto.getEmail()).get();
+
+            // description: 2. Entity 인스턴스 수정 //
+            userEntity.updateNickname(dto.getNickname());
+
+            // description: 3. repository의 save 메서드 사용 //
+            // description: save() - Entity 객체를 테이블에 저장하는 메서드 //
+            // description: 만약 해당 인스턴스의 ID 값과 동일한 레코드가 존재하면 해당 레코드를 수정 //
+            // description: 그렇지 않다면 레코드를 생성 //
+            userRepository.save(userEntity);
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto("DBE", "Database Error"));
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(new PatchNicknameResponseDto("SU", "SUCCESS"));
+
+    
     }
     
 }

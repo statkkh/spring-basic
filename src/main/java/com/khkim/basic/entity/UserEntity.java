@@ -45,5 +45,9 @@ public class UserEntity {
             this.addressDetail = dto.getAddressDetail();
             this.agreedPersonal = true;
     }
+    
+    public void updateNickname(String nickname) {
+        this.nickname = nickname;
+    }    
 
 }
