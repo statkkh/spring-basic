@@ -173,7 +173,14 @@ public class MainController {
         ResponseEntity<? super PatchNicknameResponseDto> response = mainService.patchNickname(requestBody);
         return response;
     }    
+ 
+    // @DeleteMapping("user/{email}") 
+    // public ResponseEntity <? super DeleteUserResponseDto> deleteUser(
+    //     @PathVariable("email") String email
+    // ){
+    //     ResponseEntity<? super DeleteUserResponseDto> response = mainService.deleteUser(email);
+    //     return response;
+    // }
 
-    
 
 }
