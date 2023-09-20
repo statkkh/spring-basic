@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.khkim.basic.dto.request.PatchNicknameRequestDto;
 import com.khkim.basic.dto.request.PostUserRequestDto;
+<<<<<<< HEAD
 import com.khkim.basic.dto.response.DeleteUserResponseDto;
+=======
+// import com.khkim.basic.dto.response.DeleteUserResponseDto;
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 import com.khkim.basic.dto.response.PatchNicknameResponseDto;
 import com.khkim.basic.dto.response.PostUserResponseDto;
 import com.khkim.basic.dto.response.ResponseDto;
@@ -15,6 +19,11 @@ import com.khkim.basic.entity.UserEntity;
 import com.khkim.basic.repository.UserRepository;
 
 import com.khkim.basic.service.MainService;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 import lombok.RequiredArgsConstructor;
 // 모든 결과물을 여기에서 
 // description : ! @Component 해당 클래스를 자바 bean에 등록하여  Spring 이 인스턴스 생성을 알아서 하도록 하는 어노테이션
@@ -81,6 +90,7 @@ public class MainServiceImplement implements MainService {
     
     }
 
+<<<<<<< HEAD
     @Override
     public ResponseEntity<? super DeleteUserResponseDto> deleteUser(String email) {
         try {
@@ -94,5 +104,7 @@ public class MainServiceImplement implements MainService {
         return ResponseEntity.status(HttpStatus.OK).body(new DeleteUserResponseDto("SU", "SUCCESS"));
     }
 
+=======
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
  
 }

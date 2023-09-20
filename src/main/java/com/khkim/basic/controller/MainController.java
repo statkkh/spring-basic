@@ -1,9 +1,34 @@
 package com.khkim.basic.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+=======
+// import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.khkim.basic.dto.request.PatchNicknameRequestDto;
+import com.khkim.basic.dto.request.PatchValidationDto;
+import com.khkim.basic.dto.request.PostRequestBodyDto;
+import com.khkim.basic.dto.request.PostUserRequestDto;
+import com.khkim.basic.dto.response.PatchNicknameResponseDto;
+import com.khkim.basic.dto.response.PostUserResponseDto;
+import com.khkim.basic.dto.response.TmpReponseDTO;
+import com.khkim.basic.service.MainService;
+// import com.khkim.basic.service.implement.MainServiceImplement;
+
+// import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+import javax.validation.Valid;
+
+// import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -12,6 +37,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+<<<<<<< HEAD
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -30,6 +56,8 @@ import com.khkim.basic.service.MainService;
 import lombok.RequiredArgsConstructor;
 import javax.validation.Valid;
 // import org.springframework.beans.factory.annotation.Autowired;
+=======
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 // description: Controller    레이어드 아키텍처 상의 프레젠테이션 영역   //
 // description: 클라이언트로부터 요청(입력)을 받고 서비스 결과를 응답(출력) 하는 영역//
 // description:  @RestController : REST API 형식 Controller 를 만드고자 할 때 사용하는 어노테이션
@@ -42,6 +70,10 @@ import javax.validation.Valid;
 public class MainController {
     // description : @AutoWired -  Java Bean 으로 등록되어 있는 클래스에 대해서 제어의 역전을 통해 의존성을 주입하는 어노테이션 //
     // @Autowired
+<<<<<<< HEAD
+=======
+    // private  MainService mainService;
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
     // description : IOC를 통해서 DI 하는 방법  //
     // description 1. 멤버변수를 사용한 DI //
     // description 2. setter 메서드를 사용한 DI //
@@ -55,16 +87,27 @@ public class MainController {
     private final MainService mainService;// 생성자를 사용한 IOC
 
     //http://localhost:4000/hello GET 
+<<<<<<< HEAD
     @RequestMapping(value = "hello", method = {RequestMethod.POST})
     public String hello(){
         return "Hello spring framwork";
     }
+=======
+    // @RequestMapping(value = "hello", method = {RequestMethod.POST})
+    // public String hello(){
+    //     return "Hello spring framwork";
+    // }
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
     // description :  @RequestMapping 중 GET METHOD 에  한정하여 인식
     // description : 데이터를 얻기 위한 요청
     // description : 데이터 입력시 URL로 입력
     
     @GetMapping("")
+<<<<<<< HEAD
     public String getMethod() {
+=======
+    public String getMethod(String string) {
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
         return mainService.getMethod();
     }
     
@@ -151,6 +194,7 @@ public class MainController {
         return requestBody.getArg1() ;
     }
     @GetMapping("response-entity")
+<<<<<<< HEAD
     public ResponseEntity<TmpResponseDTO> getResponseEntity(){
         TmpResponseDTO responseBody = new TmpResponseDTO("hye", 10);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
@@ -161,6 +205,18 @@ public class MainController {
         @RequestBody @Valid PostUserRequestDto requestBody
     ) {
         ResponseEntity<? super PostUserResponseDto> response = mainService.postUser(requestBody);
+=======
+    public ResponseEntity<TmpReponseDTO> getResponseEntity(){
+        TmpReponseDTO responseBody = new TmpReponseDTO(getMethod("안ㅇㄴㅁsd"), 10);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }    
+
+    @PostMapping(value="user")
+    public ResponseEntity<? super PostUserResponseDto> postUser(
+        @RequestBody @Valid PostUserRequestDto reqestBody
+    ) {
+        ResponseEntity<? super PostUserResponseDto> response = mainService.postUser(reqestBody);
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
         return response;
     }
 
@@ -170,6 +226,7 @@ public class MainController {
     ) {
         ResponseEntity<? super PatchNicknameResponseDto> response = mainService.patchNickname(requestBody);
         return response;
+<<<<<<< HEAD
     }
 
     @DeleteMapping("user/{email}")
@@ -179,6 +236,17 @@ public class MainController {
         ResponseEntity<? super DeleteUserResponseDto> response = mainService.deleteUser(email);
         return response;
     }
+=======
+    }    
+ 
+    // @DeleteMapping("user/{email}") 
+    // public ResponseEntity <? super DeleteUserResponseDto> deleteUser(
+    //     @PathVariable("email") String email
+    // ){
+    //     ResponseEntity<? super DeleteUserResponseDto> response = mainService.deleteUser(email);
+    //     return response;
+    // }
+>>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 
 
 }
