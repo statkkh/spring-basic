@@ -25,8 +25,8 @@ public class WebSecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     @Bean
     protected SecurityFilterChain configure(HttpSecurity httpSecurity) throws Exception{
-     //
-       httpSecurity
+     
+        httpSecurity
         // description : Cors정책을 기본정책으로 사용 (CorsConfig룰 따르게 함) //
             .cors().and() 
         // description :  csrf보안설정을 사용하지 않음    //
@@ -37,12 +37,12 @@ public class WebSecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         // description: 어떤 요청에 대한 인증을 수행할 지 지정하는 설정 //
             .authorizeRequests()
-        //  description 특정 요청 지정 (url 패턴에 따른 지정,    , http method + url에 따른 지정) //
-        //description  url 패턴에 따른 지정(/user 로 시작하는 모든 요청에 대하여 허용)
+        // description 특정 요청 지정 (url 패턴에 따른 지정,    , http method + url에 따른 지정) //
+        // description  url 패턴에 따른 지정(/user 로 시작하는 모든 요청에 대하여 허용)
             .antMatchers( "/user/**").permitAll()
-        //description  http 메서드 에 따른 지정 (모든  get 요청에 대해 허용) //
+        // description  http 메서드 에 따른 지정 (모든  get 요청에 대해 허용) //
             .antMatchers(HttpMethod.GET).permitAll()
-        //description : http + method url 패턴에 따른 지정 (post /board 로 시작하는 모든 요청에 대하여 허용)   //
+        // description : http + method url 패턴에 따른 지정 (post /board 로 시작하는 모든 요청에 대하여 허용)   //
             .antMatchers(HttpMethod.POST, "/board/**" ).permitAll()
         // description : 나머지 모든 요청에 대하여 인증을 수정 //
             .anyRequest().authenticated();            
