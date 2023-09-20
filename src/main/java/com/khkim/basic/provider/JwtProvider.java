@@ -4,16 +4,19 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+// description : Jwt 생성 메서드 및 검증해주는 클래스//
+@Component
 public class JwtProvider {
 
     private String secretKey = "S3cr3tk3y";
 
     
-    // description : Jwt 생성 메서드 //
     public String create(String subject ){
 
         // description :  토큰 만료시간(현재시간으로부터 1시간 후)  //
@@ -58,7 +61,7 @@ public class JwtProvider {
 
 
         if(claims == null) return null;    
-        // description :   ()를 통해서 원하는 정보 가져옴 //
+        // description :   getSubject()를 통해서 원하는 정보 가져옴 //
         String subject = claims.getSubject();               
         
         return subject;

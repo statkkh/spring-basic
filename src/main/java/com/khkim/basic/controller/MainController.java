@@ -23,6 +23,7 @@ import com.khkim.basic.dto.response.DeleteUserResponseDto;
 import com.khkim.basic.dto.response.PatchNicknameResponseDto;
 import com.khkim.basic.dto.response.PostUserResponseDto;
 import com.khkim.basic.dto.response.TmpResponseDTO;
+import com.khkim.basic.provider.JwtProvider;
 import com.khkim.basic.service.MainService;
 // import com.khkim.basic.service.implement.MainServiceImplement;
 
@@ -54,6 +55,8 @@ public class MainController {
     // description : 아래 방법은 생성자를 사용한 IOC를 통한 DI 이며  final로 지정하여 필수 멤버변수로 지정함  //
     // description : lombok 라이브러리를 사용한 @RequiredArgsConstructor 를 사용하여  필수 멤버변수의 생성자를 만듬 //
     private final MainService mainService;// 생성자를 사용한 IOC
+
+    private final JwtProvider jwtProvider;
 
     //http://localhost:4000/hello GET 
     @RequestMapping(value = "hello", method = {RequestMethod.POST})
@@ -179,6 +182,23 @@ public class MainController {
         ResponseEntity<? super DeleteUserResponseDto> response = mainService.deleteUser(email);
         return response;
     }
+    
+    @GetMapping("jwt/{value}")
+    public ResponseEntity<String> getJwt(
+        @PathVariable("value") String value
+    ){
+        String jwt = jwtProvider.create(value);
+        ResponseEntity<String> response = ResponseEntity.status(HttpStatus.OK).body(jwt);
+        return response;
+    }
 
+    @PostMapping("jwt/{validate}")
+    public ResponseEntity<String> validateJwt(
+        @RequestBody String jwt
+    ){
+        String subject = jwtProvider.validate(jwt);
+        ResponseEntity<String> response = ResponseEntity.status(HttpStatus.OK).body(subject);
+        return response;    
+    }
 
 }
