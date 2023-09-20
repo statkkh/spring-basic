@@ -49,13 +49,5 @@ public class UserEntity {
     public void updateNickname( String nickname){
         this.nickname = nickname;
     }
-<<<<<<< HEAD
-
-=======
-    
-    public void updateNickname(String nickname) {
-        this.nickname = nickname;
-    }    
->>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 
 }

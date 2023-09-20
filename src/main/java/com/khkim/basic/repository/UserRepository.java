@@ -8,19 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.khkim.basic.entity.UserEntity;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 //  description : @Repository  - 데이터 접근 계층으로 데이터베이스에 접근하여  데이터베이스 작업을 하고  그 결과를 반환하는 영역 //
 
 //  description : @Repository  - @Component 의 역할을 하며, Repository 임을 명시하기 위해 이름만 @Repository 임 
 @Repository
-<<<<<<< HEAD
 //  description : JpaRepository  인터페이스 - Jpa 기반의  Repository 인터페이스를 구현하는 데 사용함 //
-=======
-//  description : JpaRepository  인터페이스 - Jpa 기반의  Repository 인터페이스를 구현하는 데 사용함
->>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 //  description : JpaRepository < T,  K> - T 해당 레포지토리에서 사용될 엔터티클래스, ID:해당 클래스에  지정한 기본키 필드의 타입//
 public interface UserRepository extends JpaRepository<UserEntity, String>{
 
@@ -28,21 +20,12 @@ public interface UserRepository extends JpaRepository<UserEntity, String>{
     UserEntity findByEmail(String email);
     // select * from user where email ="??" and nickname ="";
     UserEntity findByEmailAndNickname(String email, String nickname);
-<<<<<<< HEAD
     // SELECT * FROM user where address_detail = "??" order by address desc ;0~n
     List<UserEntity>findByAddressDetailOrderByAddressDesc(String addressDetail);
 
     boolean existsByEmail(String email);
     // select * from user where email = '?' or nickname = '?' or tel_number = '?'; - 레코드 존재여부
     boolean existsByEmailOrNicknameOrTelNumber(String email,String nickname, String telNumber );
-=======
-    // SELECT * FROM user where address_detail = "" order by address desc;0~n
-    List<UserEntity>findByAddresDetailOrderbyAddressDesc(String addressDetail);
-
-    boolean existByEmail(String email);
-    // select * from user where email = '?' or nickname = '?' or tel_number = '?'; - 레코드 존재여부
-    boolean existByEmailOrNickNameOrTelNumber(String email,String nickname, String telNumber );
->>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
    
     long countByAddress(String address);
 
@@ -52,22 +35,15 @@ public interface UserRepository extends JpaRepository<UserEntity, String>{
 
     // description :JPQL 
     //select * from user where email = '?' 
-<<<<<<< HEAD
     @Query(value="SELECT  u FROM user u WHERE u.email = ?1")
     UserEntity findByEmailJPQL(String email);
 
     // description : SQL
-=======
-    @Query("SELECT  u FROM user u WHERE u.email = ?1")
-    UserEntity findfindByEmailJPQL(String email);
-    // SQL
->>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
     @Query(value =  "select * from  user where email = ?1", nativeQuery =true)
     UserEntity findByEmailSQL(String email);
 
     // SELECT * FROM user where address_detail = "" order by address desc;0~n
     // JPQL
-<<<<<<< HEAD
     @Query(value = "select u from  user u WHERE u.email  = ?1 and u.nickname = ?2")
     UserEntity findByEmailAndNicknameJPQL(String email ,String nickname);
     
@@ -81,19 +57,5 @@ public interface UserRepository extends JpaRepository<UserEntity, String>{
         ")"    
     , nativeQuery=true)
     List<UserEntity> getBoardWriterUserList();
-=======
-    @Query(value = "select U from  user U WHERE u.email  = ?1 and u.nickname = ?2")
-    UserEntity findByEmailAndNicknameSQL(String email ,String nickname);
-    
-    //띄어쓰기 조심
-    @Query(value = 
-    "select * " +
-    " from  user " + 
-    " where email " +
-    " in (select distinct(write_email)"  + 
-    " from board)" ,nativeQuery = true)
-    List<UserEntity> getBoardWriteUserList(); 
-
->>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 
 }

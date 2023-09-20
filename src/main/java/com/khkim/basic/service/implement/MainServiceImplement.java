@@ -1,5 +1,6 @@
 package com.khkim.basic.service.implement;
 
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 // import org.springframework.stereotype.Component;
@@ -7,11 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.khkim.basic.dto.request.PatchNicknameRequestDto;
 import com.khkim.basic.dto.request.PostUserRequestDto;
-<<<<<<< HEAD
 import com.khkim.basic.dto.response.DeleteUserResponseDto;
-=======
-// import com.khkim.basic.dto.response.DeleteUserResponseDto;
->>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 import com.khkim.basic.dto.response.PatchNicknameResponseDto;
 import com.khkim.basic.dto.response.PostUserResponseDto;
 import com.khkim.basic.dto.response.ResponseDto;
@@ -19,11 +16,6 @@ import com.khkim.basic.entity.UserEntity;
 import com.khkim.basic.repository.UserRepository;
 
 import com.khkim.basic.service.MainService;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
 import lombok.RequiredArgsConstructor;
 // 모든 결과물을 여기에서 
 // description : ! @Component 해당 클래스를 자바 bean에 등록하여  Spring 이 인스턴스 생성을 알아서 하도록 하는 어노테이션
@@ -52,7 +44,7 @@ public class MainServiceImplement implements MainService {
             userRepository.save(userEntity); 
         }catch(Exception exception){
             exception.printStackTrace();///예외 처리 확인 방법
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto("DBE", "DATABASE ERROR"));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto("DBE", "Database Error"));
         }
         
         return ResponseEntity.status(HttpStatus.OK).body(new PostUserResponseDto("SU","Success"));
@@ -90,21 +82,18 @@ public class MainServiceImplement implements MainService {
     
     }
 
-<<<<<<< HEAD
-    @Override
-    public ResponseEntity<? super DeleteUserResponseDto> deleteUser(String email) {
-        try {
-        // description: Delete 작업 순서 (DELETE) //
-        // description: 1. repository의 deleteById 메서드 사용 //            
-            userRepository.deleteById(email);
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto("DBE", "Database Error"));
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(new DeleteUserResponseDto("SU", "SUCCESS"));
-    }
+    // @Override
+    // public ResponseEntity<? super DeleteUserResponseDto> deleteUser(String email) {
+    //     try {
+    //     // description: Delete 작업 순서 (DELETE) //
+    //     // description: 1. repository의 deleteById 메서드 사용 //
+    //         userRepository.deleteById(email);
+    //     } catch (Exception exception) {
+    //         exception.printStackTrace();
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto("DBE", "Database Error"));
+    //     }
+    //     return ResponseEntity.status(HttpStatus.OK).body(new DeleteUserResponseDto("SU", "SUCCESS"));
+    // }
 
-=======
->>>>>>> 96b1917e1bb11d2d04b1f080e3cc44070022257d
  
 }
