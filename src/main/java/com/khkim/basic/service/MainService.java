@@ -14,6 +14,6 @@ public interface MainService {
     String getMethod();
     ResponseEntity<? super PostUserResponseDto> postUser(PostUserRequestDto dto);
     ResponseEntity<? super PatchNicknameResponseDto> patchNickname(PatchNicknameRequestDto dto);
-    // ResponseEntity<? super DeleteUserResponseDto> deleteUser(String email);
+    ResponseEntity<? super DeleteUserResponseDto> deleteUser(String email);
     
 }

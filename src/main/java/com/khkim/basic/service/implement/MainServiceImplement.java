@@ -82,18 +82,18 @@ public class MainServiceImplement implements MainService {
     
     }
 
-    // @Override
-    // public ResponseEntity<? super DeleteUserResponseDto> deleteUser(String email) {
-    //     try {
-    //     // description: Delete 작업 순서 (DELETE) //
-    //     // description: 1. repository의 deleteById 메서드 사용 //
-    //         userRepository.deleteById(email);
-    //     } catch (Exception exception) {
-    //         exception.printStackTrace();
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto("DBE", "Database Error"));
-    //     }
-    //     return ResponseEntity.status(HttpStatus.OK).body(new DeleteUserResponseDto("SU", "SUCCESS"));
-    // }
+    @Override
+    public ResponseEntity<? super DeleteUserResponseDto> deleteUser(String email) {
+        try {
+        // description: Delete 작업 순서 (DELETE) //
+        // description: 1. repository의 deleteById 메서드 사용 //
+            userRepository.deleteById(email);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ResponseDto("DBE", "Database Error"));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(new DeleteUserResponseDto("SU", "SUCCESS"));
+    }
 
  
 }
