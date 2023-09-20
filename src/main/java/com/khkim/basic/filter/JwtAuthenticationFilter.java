@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.event.AbstractAuthenticationEvent;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -25,7 +28,7 @@ import lombok.RequiredArgsConstructor;
 // description: 정상적인 토큰일 경우 인증된 사용자의 정보를 controller 에서 사용할 수 있도록 함//
 
 // description: OncePerRequestFilter 를 확장항 클래스를 Filter 클래스로 만듬 //  
-
+@Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
 
@@ -54,10 +57,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
                     return;
                 }
                 // description validator에 대한 추가 정보 받는 방법 //    
-                // description3. Context에 등록할 토큰 객체를 생성하는 방법 //
+                // description : 3. Context에 등록할 토큰 객체를 생성하는 방법 //
                 AbstractAuthenticationToken authenticationToken 
                 //  UsernamePasswordAuthenticationToken 사용자이름, 패스워드, 권한으로 구성되어 있는 토큰 객체
-                    = new UsernamePasswordAuthenticationToken(subject, null, AuthorityUtils.NO_AUTHORITIES);      
+                    = new UsernamePasswordAuthenticationToken(subject, null, AuthorityUtils.NO_AUTHORITIES);    
+            
+                //  description : 4. 인증 토큰 에 어떤 요청에 대한 인증 토큰인지 정보를 저장 //   
+                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                
+                // description 5. 빈 인증 컨텍스트 생성 //
+                SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
+                // description 6. 인증 토큰 등록    //
+                securityContext.setAuthentication(authenticationToken);
+                // description  7. //
+                SecurityContextHolder.setContext(securityContext);
+                    
             } catch (Exception exception) {
                 exception.printStackTrace();
 
@@ -77,7 +91,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         boolean hasAuthorization = StringUtils.hasText(authorization);
         if(!hasAuthorization) return null;
         // description : 2.인증방식이 Bearer인지 확인 
-        boolean IsBearer = authorization.startsWith(  "Bearer ");
+        boolean IsBearer = authorization.startsWith("Bearer ");
         if(!IsBearer) return null;
 
         // description : 3 . Bearer  토큰 추출 //
