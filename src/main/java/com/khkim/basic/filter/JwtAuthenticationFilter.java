@@ -55,7 +55,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
                     filterChain.doFilter(request, response);
                     return;
                 }
-                // description validator에 대한 추가 정보 받는 방법 //
+                // description validator에 대한 추가 정보 받는 방법 전역 저장 공간을 생성 //
                 // description : 3. Context에 등록할 토큰 객체를 생성하는 방법 //
                 AbstractAuthenticationToken authenticationToken 
                 //  UsernamePasswordAuthenticationToken 사용자이름, 패스워드, 권한으로 구성되어 있는 토큰 객체
@@ -68,7 +68,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
                 // description : 6. 인증 토큰 등록    //
                 securityContext.setAuthentication(authenticationToken);
-                // description : 7. 생성한 컨텍스트를 컨텍스트러 등록//
+                // description : 7. 생성한 컨텍스트를 컨텍스트(전역)로 등록//
                 SecurityContextHolder.setContext(securityContext);
                     
             } catch (Exception exception) {

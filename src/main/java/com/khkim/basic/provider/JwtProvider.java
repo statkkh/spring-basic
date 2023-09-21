@@ -21,23 +21,23 @@ public class JwtProvider {
 
         // description :  토큰 만료시간(현재시간으로부터 1시간 후)  //
         Date expiration = Date.from(Instant.now().plus(1, ChronoUnit.HOURS));
-        // description :  JWT 생성 //
+
+        // description :  JWT 생성 //3
         // description :  JWT  클래스의 builder()메서드를 통해서 작성을 시작//
         String jwt = Jwts.builder()
-
+        
         // description : 2. signwith() 메서드를 통해서 서명 알고리즘 서명에 사용할 비밀키 지정 //
                         .signWith(SignatureAlgorithm.HS256, secretKey )
-        // description : 3. setmeothod 통한 payload 작성 //               
-        // description : setSubject() 생성 주체(접근 주체) ,setIssuedAt() - 생성 시간  setExpiration : 만료시간(토큰생성시간, 토큰 만료시간//
+        // description : 3. setmethod 통한 payload 작성  //
+        // description : setSubject() 생성 주체(접근 주체), setIssuedAt() - 토큰생성 시간 setExpiration : 만료시간(토큰생성시간, 토큰 만료시간//
                         .setSubject(subject).setIssuedAt(new Date()).setExpiration(expiration)
-        // description : 4. compact 통한 jwt 생성종료 //               
+        // description : 4. compact 메서드를 통한 jwt 생성종료 //               
                         .compact();
-
         return jwt;                        
     }
 
-    //description : jwt 검증 메서드 //
-    //description :  검증 결과 과정 //
+    // description : jwt 검증 메서드 //
+    // description :  검증 결과 과정 //
     // description :    1.jwt 받아옴 //
     // description :    2. 받아온 우리가 알고 있는 secret key로 검증 처리//
     // description :    3. 검증 완료후 jwt에서 payload를 꺼내옴 //
@@ -65,9 +65,7 @@ public class JwtProvider {
         String subject = claims.getSubject();               
         
         return subject;
-                            
-
-
+                        
 
     }
 
