@@ -3,6 +3,8 @@ package com.khkim.basic.service.implement;
 // import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 // import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,12 @@ public class MainServiceImplement implements MainService {
 
     private final UserRepository userRepository;
 
+    // description : 비밀번호를 안전하게 암호화하고 검증 하는 인터페이스 //
+    // description : BCryptPasswordEncoder  - Bcrypt 해싱 알고리즘을 사용하는 PasswordEncoder 구현  클래스  //
+    // description : component 에 등록 되어 있지 않음 //
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+
     @Override
     public String getMethod() {
         return "This method is GET method.";
@@ -37,6 +45,14 @@ public class MainServiceImplement implements MainService {
         // INSERT INTO user(email, password, nickname,telNumber address , addressDetail);
         // VALUES(dto.getEmail() , dto.getPassword()...)
         try{
+            // description : 비밀번호 암호화 작업  passwordEncoder //
+            //  description : 1 . dto로부터 평문의 비밀번호(암호화할 문자열)을 가져오기
+            // 2. passwordEncoder() 의 인스턴스의 encode()메서드로 암호화 한다. //
+           
+            String password = dto.getPassword();    
+            String  encodedPassword = passwordEncoder.encode(password); 
+            dto.setPassword(encodedPassword);
+             
             // description : Create 작업 순서(INSERT) 
             // description : 1. Entity 인스턴스 생성 //
             UserEntity userEntity = new UserEntity(dto);

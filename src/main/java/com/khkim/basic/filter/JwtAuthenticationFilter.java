@@ -63,7 +63,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
             
                 //  description : 4. 인증 토큰 에 어떤 요청에 대한 인증 토큰인지 정보를 저장 //
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                
+                    
                 // description : 5. 빈 인증 컨텍스트 생성 //
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
                 // description : 6. 인증 토큰 등록    //

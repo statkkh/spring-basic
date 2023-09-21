@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import com.khkim.basic.dto.request.PatchNicknameRequestDto;
 import com.khkim.basic.dto.request.PatchValidationDto;
@@ -200,5 +201,17 @@ public class MainController {
         ResponseEntity<String> response = ResponseEntity.status(HttpStatus.OK).body(subject);
         return response;    
     }
+
+    // description : Spring Security Context에 등록되있는 접근 주체를 가져오는 어노테이션  //
+    // description : get방식 인증을 선택 //
+    // description : @AuthenticationPrincipal 인증하지 않을 시 anonymousUser //
+    @GetMapping("principle")
+    public ResponseEntity<String> getPrinciple(
+        @AuthenticationPrincipal String subject    
+    ){
+        return ResponseEntity.status(HttpStatus.OK).body(subject);
+    }
+    
+    
 
 }

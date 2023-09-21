@@ -50,4 +50,5 @@ public class UserEntity {
         this.nickname = nickname;
     }
 
+
 }
