@@ -20,10 +20,12 @@ import com.khkim.basic.dto.request.PatchNicknameRequestDto;
 import com.khkim.basic.dto.request.PatchValidationDto;
 import com.khkim.basic.dto.request.PostRequestBodyDto;
 import com.khkim.basic.dto.request.PostUserRequestDto;
+import com.khkim.basic.dto.request.SignInRequestDto;
 import com.khkim.basic.dto.response.DeleteUserResponseDto;
 import com.khkim.basic.dto.response.PatchNicknameResponseDto;
 import com.khkim.basic.dto.response.PostUserResponseDto;
 import com.khkim.basic.dto.response.TmpResponseDTO;
+import com.khkim.basic.dto.response.SignInResponseDto;
 import com.khkim.basic.provider.JwtProvider;
 import com.khkim.basic.service.MainService;
 // import com.khkim.basic.service.implement.MainServiceImplement;
@@ -213,5 +215,13 @@ public class MainController {
     }
     
     
+    @PostMapping("sign-in")
+    public ResponseEntity<? super SignInResponseDto> signIn(
+        @RequestBody @Valid SignInRequestDto requestBody
+    ){
+        ResponseEntity<? super SignInResponseDto> response =  mainService.signIn(requestBody);
+        return response;
+    }
+
 
 }

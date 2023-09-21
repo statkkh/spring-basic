@@ -47,7 +47,7 @@ public class WebSecurityConfig {
             .authorizeRequests()
         // description 특정 요청 지정 (url 패턴에 따른 지정,    , http method + url에 따른 지정) //
         // description  url 패턴에 따른 지정(/user 로 시작하는 모든 요청에 대하여 허용)
-            .antMatchers( "/user/**").permitAll()
+            .antMatchers( "/user/**","/sign_in").permitAll()
         // description  http 메서드 에 따른 지정 (모든  get 요청에 대해 허용 , 인증없이 사용가능) //
             .antMatchers(HttpMethod.GET).permitAll()
         // description : http + method url 패턴에 따른 지정 (post /board 로 시작하는 모든 요청에 대하여 허용, 인증 없이 사용가능)   //

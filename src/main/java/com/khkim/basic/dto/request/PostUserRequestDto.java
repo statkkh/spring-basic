@@ -25,7 +25,7 @@ public class PostUserRequestDto {
     @NotBlank
     private String nickname;
     @NotBlank
-    @Pattern(regexp = "^[0-9]{11,13}!$")
+    @Pattern(regexp = "^[0-9]{11,13}$")
     private String telNumber;
     @NotBlank
     private String address;
